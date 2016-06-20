@@ -2,6 +2,7 @@
 #include <stdio.h>
 /*
 super mario ladders
+check50 done
    ##
   ###
  ####
@@ -15,9 +16,9 @@ int main()
     do
     {
         printf("Please input an integer value between 1 and 30: ");
-        scanf("%d", &n);
+        n = GetInt();
     }
-    while (n < 1 || n > 30);
+    while (n < 0 || n > 23);
 
     makeLadders(n);
     return 0;
@@ -27,13 +28,11 @@ void makeLadders(int n)
 {
     int height = n;
     int column = height + 1;
-    int test = 0;
 
     for(int i = 0; i < height; i ++)
     {
-        test ++;
         for (int j = 0; j < column; j ++)
-        {   
+        {
             if(j < column - i - 2){
                 printf("%s", " ");
             }
@@ -43,13 +42,7 @@ void makeLadders(int n)
             else{
                 printf("%s", "#");
             }
-            
+
         }
     }
-    printf("the height of the ladder is %d\n", test);
 }
-
-
-
-
-
