@@ -12,8 +12,6 @@ void makeLadders(int);
 int main()
 {
     int n;
-
-
     do
     {
         printf("Please input an integer value between 1 and 30: ");

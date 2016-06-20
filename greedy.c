@@ -15,14 +15,14 @@ int main(){
     int n;
 
     printf("How much do I owe you ?\n");
-    scanf("%f", &input);
+    input = GetFloat();
 
     input = round(input*100);
     cents = input;
     cents = cents%100;
 
     n = getCoins(cents);
-    printf("number of coins : %d\n",n);
+    printf("%d\n",n);
     return 0;
 }
 
@@ -33,7 +33,7 @@ int getCoins(int cents){
         while (cents >= coinsAvailable[i])
         {
             cents -= coinsAvailable[i];
-            printf("give you: %d\n",coinsAvailable[i]);
+            // printf("give you: %d\n",coinsAvailable[i]);
             n ++;
         };
     }
