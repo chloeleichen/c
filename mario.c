@@ -1,12 +1,7 @@
 #include <cs50.h>
 #include <stdio.h>
 /*
-super mario ladders
-check50 done
-   ##
-  ###
- ####
-#####
+Question: http://cdn.cs50.net/2016/x/psets/1/pset1/pset1.html#itsa_mario
 */
 
 void makeLadders(int);
@@ -15,7 +10,7 @@ int main()
     int n;
     do
     {
-        printf("Please input an integer value between 1 and 30: ");
+        printf("Please input an integer value between 0 and 23: ");
         n = GetInt();
     }
     while (n < 0 || n > 23);

@@ -2,8 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 /*
-  given the change required
-  print the list amount of coin needed
+  Question: http://cdn.cs50.net/2016/x/psets/1/pset1/pset1.html#time_for_change
+  Check: check50 2015.fall.pset1.greedy greedy.c
  */
 
 int coinsAvailable[4] = {25, 10, 5, 1};
