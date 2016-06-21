@@ -9,14 +9,14 @@
 
 #define ALPHABET 26
 string encrypt(string, int);
-static const int start[] = {(int)'a' - 1, (int)'A' - 1};
+static const int start[] = {(int)'a', (int)'A'};
 
 int main(int argc, char* argv[] )
 {
     int k;
     char c;
     string message;
-    
+
     if(argc != 2)
     {
         printf("wrong number of argument, exist\n");
@@ -28,7 +28,6 @@ int main(int argc, char* argv[] )
         return 1;
     }
 
-    k = k%26;
     message = GetString();
     printf("%s\n",encrypt(message, k));
     return 0;
@@ -45,11 +44,7 @@ string encrypt(string message, int k){
         if(isalpha(message[i]))
         {
             int base = isupper(message[i]) ? start[1] : start[0];
-            if(origin + k > ALPHABET + base){
-                transformed = k - (ALPHABET - origin);
-            } else {
-                transformed = origin + k;
-            }
+            transformed = (origin - base + k)%ALPHABET + base;
         }
         
         message[i] = (char)transformed;
