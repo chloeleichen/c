@@ -6,7 +6,7 @@
   Check: check50 2015.fall.pset1.greedy greedy.c
  */
 
-int coinsAvailable[4] = {25, 10, 5, 1};
+static const int coinsAvailable[4] = {25, 10, 5, 1};
 
 int getCoins(int);
 int main(){
@@ -21,8 +21,10 @@ int main(){
     }
     while (input < 0);
 
-    input = round(input*100);
-    cents = input;
+    input = (float)round(input*100);
+
+    //explicit type casting
+    cents = (int)input;
 
     nCoins = getCoins(cents);
     printf("%d\n",nCoins);

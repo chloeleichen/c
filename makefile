@@ -6,7 +6,7 @@
   # compiler flags:
   #  -g    adds debugging information to the executable file
   #  -Wall turns on most, but not all, compiler warnings
-  CFLAGS  = -g -Wall
+  CFLAGS  = -g -Weverything
   
   # link THIS for the cs50 functions (add others as needed):
   LFLAGS = -lcs50
