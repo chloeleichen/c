@@ -12,7 +12,7 @@
  * and s is an optional seed
  */
  
-#define _XOPEN_SOURCE
+// #define _XOPEN_SOURCE
 
 #include <cs50.h>
 #include <stdio.h>
@@ -24,17 +24,22 @@
 
 int main(int argc, string argv[])
 {
-    // TODO: comment me
+    // expects one or two command-line arguments, if no commandline 
+    // argument is given, exit 1
     if (argc != 2 && argc != 3)
     {
         printf("Usage: generate n [s]\n");
         return 1;
     }
 
-    // TODO: comment me
+    // The number of numbers generated = the first commandline argument
     int n = atoi(argv[1]);
 
-    // TODO: comment me
+    // If the number of argument is 3, use the second argument in srand48
+    // function to initialise the entry points for the random number 
+    // generation
+    // if the second command line argument is not given, use the current 
+    // time for srand() function
     if (argc == 3)
     {
         srand48((long int) atoi(argv[2]));
@@ -44,7 +49,8 @@ int main(int argc, string argv[])
         srand48((long int) time(NULL));
     }
 
-    // TODO: comment me
+    // create n lines of return non-negative, double-precision, floating-point 
+    // values, uniformly distributed over the interval [0.0 , 1.0].
     for (int i = 0; i < n; i++)
     {
         printf("%i\n", (int) (drand48() * LIMIT));

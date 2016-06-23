@@ -19,7 +19,7 @@
 #include "helpers.h"
 
 // maximum amount of hay
-const int MAX = 65536;
+#define MAX 65536
 
 int main(int argc, string argv[])
 {
