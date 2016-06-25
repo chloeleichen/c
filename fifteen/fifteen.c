@@ -31,6 +31,7 @@ int board[DIM_MAX][DIM_MAX];
 
 // dimensions
 int d;
+int blank[2];
 
 // prototypes
 void clear(void);
@@ -39,6 +40,7 @@ void init(void);
 void draw(void);
 bool move(int tile);
 bool won(void);
+int* findTile(int tile);
 
 int main(int argc, string argv[])
 {
@@ -183,13 +185,15 @@ void draw(void)
             }
             else 
             {
-                printf("  ");
+                blank[0] = i;
+                blank[1] = j;
+                printf(" _ ");
             }
             
         }
         printf("\n");
-
     }
+    printf("blank space is at: %d, %d\n", blank[0], blank[1]);
 }
 
 /**
@@ -198,8 +202,24 @@ void draw(void)
  */
 bool move(int tile)
 {
-    // TODO
-    return false;
+    if(!findTile(tile)){
+        return false;
+    }
+    else
+    {
+        int* active_tile = findTile(tile);
+        if(abs(active_tile[0] - blank[0]) == 1 
+        || abs(active_tile[1] - blank[1]) == 1)
+        {
+            printf("move\n");
+            return false;
+        }
+        
+        // printf("%d, %d\n", active_tile[0], active_tile[1]);
+        
+        return false;
+    }
+    
 }
 
 /**
@@ -210,4 +230,32 @@ bool won(void)
 {
     // TODO
     return false;
+}
+
+/*
+ Given value of tile, return position of this tile on the board
+ */
+
+int* findTile(int tile)
+{
+    if (tile >= d*d || tile <=0)
+    {
+        return false;
+    }
+
+    static int cordinates[2];
+
+    for(int i = 0; i < d; i ++)
+    {
+        for(int j = 0; j < d; j ++)
+        {
+            if(board[i][j] == tile)
+            {
+                cordinates[0]= i;
+                cordinates[1]=j;
+                break;
+            }
+        }
+    }
+    return cordinates;
 }
