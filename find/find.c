@@ -27,7 +27,7 @@ int main(int argc, string argv[])
     if (argc != 2)
     {
         printf("Usage: ./find needle\n");
-        return -1;
+        return 0;
     }
 
     // remember needle
