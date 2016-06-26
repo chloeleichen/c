@@ -240,20 +240,18 @@ bool move(int tile)
  */
 bool won(void)
 {
-    for(int i = 0; i < d -1; i ++)
+    printf("check win\n");
+    int value = 1;
+    for(int i = 0; i < d; i ++)
     {
-        for(int j = 0; j < d-1; j ++)
+        for (int j = 0; j < d; j ++)
         {
-            if(board[i][j] > board[i][j+1])
-            {
-                return false;
-            }
-        }
-        if(board[i][0] > board[i + 1][0])
-        {
-            return false;
+            if(board[i][j] == 0) value = 0;
+            if (board[i][j] != value) return false;
+            value ++;
         }
     }
+
     return true;
 }
 
