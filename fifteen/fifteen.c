@@ -126,7 +126,7 @@ int main(int argc, string argv[])
         }
 
         // sleep thread for animation's sake
-        usleep(500000);
+        usleep(50000);
     }
     
     // close log
@@ -168,6 +168,13 @@ void init(void)
             board[i][j]= (d -1 - j) + d*(d - i - 1);
         }
     }
+    // swap 1 and 2 if odd number of tiles 
+    // means if d is even number 
+    if(d%2 == 0)
+    {
+        board[d-1][d-2] = 2;
+        board[d-1][d-3] = 1;
+    }
 }
 
 /**
@@ -181,7 +188,7 @@ void draw(void)
         {
             if (board[i][j] != 0)
             {
-                printf("%2d ",board[i][j]);
+                printf("%2d",board[i][j]);
             }
             else 
             {
@@ -193,7 +200,6 @@ void draw(void)
         }
         printf("\n");
     }
-    printf("blank space is at: %d, %d\n", blank[0], blank[1]);
 }
 
 /**
@@ -208,15 +214,21 @@ bool move(int tile)
     else
     {
         int* active_tile = findTile(tile);
-        if(abs(active_tile[0] - blank[0]) == 1 
-        || abs(active_tile[1] - blank[1]) == 1)
+        if((abs(active_tile[0] - blank[0]) == 1 && abs(active_tile[1] - blank[1]) == 0)
+        || (abs(active_tile[0] - blank[0]) == 0 && abs(active_tile[1] - blank[1]) == 1))
         {
             printf("move\n");
-            return false;
+            //swap current active with empty
+            board[active_tile[0]][active_tile[1]] = 0;
+            board[blank[0]][blank[1]] = tile;
+            blank[0] = active_tile[0];
+            blank[1] = active_tile[1];
+
+            //redraw
+            draw();
+            return true;
         }
-        
         // printf("%d, %d\n", active_tile[0], active_tile[1]);
-        
         return false;
     }
     
@@ -228,8 +240,21 @@ bool move(int tile)
  */
 bool won(void)
 {
-    // TODO
-    return false;
+    for(int i = 0; i < d -1; i ++)
+    {
+        for(int j = 0; j < d-1; j ++)
+        {
+            if(board[i][j] > board[i][j+1])
+            {
+                return false;
+            }
+        }
+        if(board[i][0] > board[i + 1][0])
+        {
+            return false;
+        }
+    }
+    return true;
 }
 
 /*
